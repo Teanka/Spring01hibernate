@@ -12,8 +12,21 @@ private Long id;
 private String title;
 private String author;
 private int rating;
-private String publisher;
+
+@ManyToOne(cascade = CascadeType.ALL)
+private Publisher publisher;
 private  String description;
+
+    public Book() {
+    }
+
+    public Book(String title, String author, int rating, Publisher publisher, String description) {
+        this.title = title;
+        this.author = author;
+        this.rating = rating;
+        this.publisher = publisher;
+        this.description = description;
+    }
 
     public Long getId() {
         return id;
@@ -47,11 +60,11 @@ private  String description;
         this.rating = rating;
     }
 
-    public String getPublisher() {
+    public Publisher getPublisher() {
         return publisher;
     }
 
-    public void setPublisher(String publisher) {
+    public void setPublisher(Publisher publisher) {
         this.publisher = publisher;
     }
 
@@ -61,5 +74,17 @@ private  String description;
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", rating=" + rating +
+                ", publisher='" + publisher + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }
